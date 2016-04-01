@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   
   #specify default root page
   root 'welcome#index'
+
+  resources :docs
 end
