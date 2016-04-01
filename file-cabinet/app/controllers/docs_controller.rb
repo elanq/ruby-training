@@ -2,8 +2,10 @@ class DocsController < ApplicationController
   # run a method first before executing the controller
   before_action :find_doc, only: [:show, :edit, :update, :destroy]
   def index
-    # load documents
-    @docs = Doc.all.order("created_At DESC")
+    # load all documents
+    # @docs = Doc.all.order("created_At DESC")
+    # load specific documents by user id
+    @docs = Doc.where(user_id: current_user)
   end
 
   def show
