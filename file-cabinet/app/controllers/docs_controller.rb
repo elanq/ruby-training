@@ -11,11 +11,11 @@ class DocsController < ApplicationController
 
   def new
     # create new docs model
-    @doc = Doc.new
+    @doc = current_user.docs.build
   end
 
   def create
-    @doc = Doc.new(doc_params)
+    @doc = current_user.docs.build(doc_params)
 
     # If model @doc successfully saved redirect to @doc else render new controller
     if @doc.save
