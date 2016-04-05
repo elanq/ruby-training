@@ -5,6 +5,3 @@
    %p= time_ago_in_words(doc.created_at)
    //truncate document content to 50 char
    %p= truncate(doc.content, length:50)
-
-= link_to "Create new doc", new_doc_path
-= link_to "Sign out", destroy_user_session_path(current_user), method: :delete, data: { confirm: "Are you sure?"}

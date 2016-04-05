@@ -1,0 +1,23 @@
+!!!
+%html
+%head
+  %title FileCabinet | ruby training part one
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  = csrf_meta_tags
+%body
+  %header
+    .header_inner
+      = link_to "FileCabinet", root_path
+
+      %nav
+        - if user_signed_in?
+          = link_to "Create doc", new_doc_path
+          = link_to "Sign out", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?"}
+
+        - else
+          = link_to "Sign in", new_user_session_path
+  %p.notice= notice
+  %p.alert= alert
+
+  = yield

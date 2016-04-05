@@ -5,7 +5,7 @@ class DocsController < ApplicationController
     # load all documents
     # @docs = Doc.all.order("created_At DESC")
     # load specific documents by user id
-    @docs = Doc.where(user_id: current_user)
+    @docs = Doc.where(user_id: current_user).order("created_at DESC")
   end
 
   def show
