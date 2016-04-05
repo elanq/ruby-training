@@ -1,0 +1,26 @@
+<%= form_for([@post, @post.comments.build]) do |f| %>
+<% if @post.errors.any? %>
+<div id="errors">
+  <h2>
+  <%= pluralize @post.errors.count, "error" %> stopped this post from saving
+  </h2>
+  <ul>
+    <% @post.errors.full_messages.each do |err| %>
+    <li><%=err%></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<p>
+  <%= f.label :name %> <br>
+  <%= f.text_field :name %>
+</p>
+<p>
+  <%= f.label :body %> <br>
+  <%= f.text_area :body%>
+</p>
+<br>
+<p>
+  <%=f.submit %>
+</p>
+<% end %>

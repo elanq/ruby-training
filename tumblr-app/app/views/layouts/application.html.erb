@@ -16,13 +16,23 @@
         <li>
           <%= link_to "Posts", root_path %>
         </li>
-        <li>About</li>
+        <li>
+          <%= link_to "About", about_path %>
+        </li>
       </ul>
       <p class="sign_in">User login</p>
     </div>
     <div id="main_content">
       <div id="header">
-        <p>Post feed</p>
+        <p>
+          <% if current_page?(root_path) %>
+            <p>Post feed</p>
+          <% elsif current_page?(about_path) %>
+            <p>Who am i?</p>
+          <% else %>
+            <%= link_to "Back to feed", root_path %>
+          <% end %>  
+        </p>
         <div class="buttons">
           <button class="button">
           <%= link_to "Make Post", new_post_path %>
