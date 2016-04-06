@@ -1,12 +1,13 @@
 class PicsController < ApplicationController
   before_action :find_pic, only: [:show, :edit, :update, :destroy]
 
+
   def index
     @pics = Pic.all.order('created_at DESC')
   end
 
   def create
-    @pic = Pic.new(pic_params)
+    @pic = current_user.pics.build(pic_params)
 
     if @pic.save
       redirect_to @pic, notice: "Pic is saved"
