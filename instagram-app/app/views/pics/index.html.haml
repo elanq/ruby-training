@@ -1,6 +1,9 @@
-- @pics.each do |pic|
-  %h2= link_to (image_tag pic.image.url(:medium)), pic
-  %p
-  created at 
-  = time_ago_in_words pic.created_at
-  ago
+.col-md-6.col-md-offset-3
+  #pics.transitions-enabled
+  - @pics.each do |pic|
+    .box.panel.panel-default
+      %h2= link_to (image_tag pic.image.url(:medium)), pic
+      %p
+      created at 
+      = time_ago_in_words pic.created_at
+      ago
