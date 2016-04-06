@@ -1,4 +1,8 @@
 %h1= @pic.title
+%small
+created 
+= time_ago_in_words @pic.created_at
+ago
 %p= simple_format @pic.description
 %p
 from 
