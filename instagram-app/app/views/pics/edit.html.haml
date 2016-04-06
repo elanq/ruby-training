@@ -1,5 +1,7 @@
-%h1 Edit pic!
-
-= render 'form'
-
-= link_to "cancel edit", pic_path(@pic)
+#edit_page.col-md-8.col-md-offset-2
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h1 Edit Pic
+      .panel-body
+        = render 'form'

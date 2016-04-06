@@ -1,13 +1,17 @@
-%h1= @pic.title
-%small
-created 
-= time_ago_in_words @pic.created_at
-ago
-%p= simple_format @pic.description
-%p
-from 
-= @pic.user.email
-
-= link_to "back", root_path
-= link_to "edit", edit_pic_path(@pic)
-= link_to "delete", pic_path, method: :delete, data: {confirm: "Are you sure"}
+.col-md-8.col-md-offset-2
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h1= @pic.title
+        %small
+        created 
+        = time_ago_in_words @pic.created_at
+        ago
+      .panel-body
+        %p= simple_format @pic.description
+        %p
+        from 
+        = @pic.user.email
+        %br      
+        = link_to "edit", edit_pic_path(@pic)
+        = link_to "delete", pic_path, method: :delete, data: {confirm: "Are you sure"}
