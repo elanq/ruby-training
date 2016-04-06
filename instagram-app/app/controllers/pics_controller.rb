@@ -44,7 +44,8 @@ class PicsController < ApplicationController
 
   private
     def pic_params
-      params.require(:pic).permit(:title, :description)
+      # permit allowed specified parameters to be saved in database
+      params.require(:pic).permit(:title, :description, :image)
     end
 
     def find_pic

@@ -8,6 +8,7 @@
         = time_ago_in_words @pic.created_at
         ago
       .panel-body
+        = image_tag @pic.image.url(:medium)
         %p= simple_format @pic.description
         %p
         from 

@@ -4,4 +4,7 @@
       .panel-heading
         %h1 Edit Pic
       .panel-body
+        .current_image
+          %strong.center Right now
+          = image_tag @pic.image.url(:medium)
         = render 'form'
