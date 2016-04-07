@@ -1,0 +1,9 @@
+.col-md-8.col-md-offset-2
+  %h1 Your task list
+  .pull-right
+    = link_to 'New item', new_task_path
+  - @tasks.each do |task|
+    %h2= link_to task.title, task_path(task)
+
+    %p= simple_format task.description
+    %small= time_ago_in_words task.created_at
