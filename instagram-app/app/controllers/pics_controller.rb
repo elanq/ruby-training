@@ -1,5 +1,5 @@
 class PicsController < ApplicationController
-  before_action :find_pic, only: [:show, :edit, :update, :destroy, :upvote]
+  before_action :find_pic, only: [:show, :edit, :update, :destroy, :upvote, :downvote]
   before_action :authenticate_user!, except: [:index, :show]
 
 
@@ -33,6 +33,11 @@ class PicsController < ApplicationController
     redirect_to :back
   end
 
+  def downvote
+    @pic.downvote_from current_user
+    redirect_to :back
+  end
+
   def update
     if @pic.update(pic_params)
       redirect_to @pic, notice: "Picture was updated"
@@ -43,7 +48,7 @@ class PicsController < ApplicationController
 
   def destroy
     @pic.destroy
-    redirect_to root_path, notice: "Picture was deleted"
+    redirect_to root_path
   end
 
 

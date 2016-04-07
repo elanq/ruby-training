@@ -22,12 +22,18 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# enable haml support language for views
 gem 'haml', '~> 4.0'
+# simple form
 gem 'simple_form', '~> 3.2.0'
+# enable sass support for bootstrap
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+# gem for user management
 gem 'devise', '~> 3.5.3'
+# ease file upload process
 gem 'paperclip', '~> 4.3', '>= 4.3.6'
 gem 'masonry-rails', '~> 0.2.1'
+# enable voting for pictures
 gem 'acts_as_votable', '~> 0.10.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
