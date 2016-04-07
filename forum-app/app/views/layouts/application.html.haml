@@ -1,0 +1,25 @@
+!!! 5
+%html
+  %head
+    %title Forum app
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true 
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %nav.navbar.navbar-default
+      .container
+        .navbar-header
+          = link_to "Forum app", root_path, class: "navbar-brand"
+        %ul.navbar-nav.nav.navbar-right
+          - if user_signed_in?
+            %li= link_to "Sign out", destroy_user_session_path, method: :delete
+          - else
+            %li= link_to "Register", new_user_registration_path
+            %li= link_to "Login", new_user_session_path
+        - if user_signed_in?
+          = link_to "Post it!", new_message_path, class: "navbar-text navbar-link"
+
+  - flash.each do | name, msg|
+    = content_tag :div, msg, class: 'alert'
+  
+  = yield
