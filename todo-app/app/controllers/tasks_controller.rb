@@ -20,6 +20,22 @@ class TasksController < ApplicationController
     @task = Task.new
   end
 
+  def edit    
+  end
+
+  def update
+    if @task.update tasks_params
+      redirect_to task_path @task
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @task.destroy
+    redirect_to root_path
+  end
+
   private 
     def tasks_params
       params.require(:task).permit(:title, :description)

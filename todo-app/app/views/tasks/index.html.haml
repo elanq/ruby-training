@@ -1,9 +1,14 @@
 .col-md-8.col-md-offset-2
-  %h1 Your task list
+  %h1 Your task list  
   .pull-right
     = link_to 'New item', new_task_path
-  - @tasks.each do |task|
-    %h2= link_to task.title, task_path(task)
+  - if @tasks.count != 0
+    - @tasks.each do |task|
+      %h2= link_to task.title, task_path(task)
 
-    %p= simple_format task.description
-    %small= time_ago_in_words task.created_at
+      %p= simple_format task.description
+      %small= time_ago_in_words task.created_at
+  - else
+    %h2 
+      Hooray.. no task currently. Why don't create a 
+      = link_to 'new one?', new_task_path
