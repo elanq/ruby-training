@@ -2,16 +2,42 @@
   - if !current_user.present?
     = render partial: 'welcome_page'
   - else
-  
     %h1 
       = current_user.email
       task list        
     - if @tasks.count != 0
       - @tasks.each do |task|
-        %h2= link_to task.title, task_path(task)
+        - if task.completed?
+          .row.item
+            .col-md-2
+              = link_to complete_task_path(task), method: :put do
+                %i.fa.fa-check.fa-lg
+            .col-md-2
+              = link_to task, method: :delete, data: {confirm: "Are you sure?"} do
+                %i.fa.fa-trash.fa-lg
+            .col-md-8
+              %h2{style: 'opacity:0.5;', class: 'item-title'}
+                %strike
+                  = link_to task.title, task
+              %p{style: 'opacity:0.5;', class: 'item-sub-title item-desc'}
+                = task.description
+              %p{style: 'opacity:0.5;', class: 'item-created-at item-sub-title'}
+                completed 
+                = time_ago_in_words(task.completed_at)
+                ago
+        - else
+          .row.item
+            .col-md-2
+              = link_to complete_task_path(task), method: :put do
+                %i.fa.fa-check.fa-lg
+            .col-md-8
+              %h2.item-title= link_to task.title, task
+              %p.item-sub-title.item.desc= task.description
+              %p= time_ago_in_words task.created_at
+            .col-md-2
+              = link_to task, method: :delete, data: {confirm: "Are you sure?"} do
+                %i.fa.fa-trash.fa-lg            
 
-        %p= simple_format task.description
-        %small= time_ago_in_words task.created_at
     - else
       %h2 
         Hooray.. no task currently. Why don't create a 
