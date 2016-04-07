@@ -20,6 +20,9 @@ class MessagesController < ApplicationController
   end
 
   def edit
+    if @message.user_id != current_user
+      redirect_to root_path, notice: "Cannot edit someone else's post"
+    end
   end
 
   def update
@@ -31,8 +34,12 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    @message.destroy
-    redirect_to root_path
+    if @message.user_id == current_user
+      @message.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path, notice: "Cannot delete someone else's post"
+    end
   end
 
   private
