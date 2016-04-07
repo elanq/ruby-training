@@ -2,11 +2,13 @@ class TasksController < ApplicationController
   before_action :find_task, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
   def index
-    @tasks = Task.all.order('created_at DESC')
+    if current_user.present?
+      @tasks = Task.where({user_id: current_user.id}).order('created_at DESC')
+    end
   end
 
   def create
-    @task = Task.new tasks_params
+    @task = current_user.tasks.build tasks_params
     if @task.save
       redirect_to root_path
     else
@@ -18,7 +20,7 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.build
   end
 
   def edit    

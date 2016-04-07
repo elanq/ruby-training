@@ -1,9 +1,9 @@
-.col-md-10.col-md-offset-1
+.col-md-9.col-md-offset-2
   %h1= @task.title
   %p= @task.description
-  %small created at 
-  = @task.created_at    
-  - if current_user.present?
-    = link_to 'back', root_path
+  %small 
+    created at 
+    = @task.created_at    
+  - if current_user == @task.user  
     = link_to 'edit', edit_task_path(@task)
     = link_to 'delete', task_path(@task), method: :delete

@@ -1,12 +1,18 @@
 .col-md-8.col-md-offset-2
-  %h1 Your task list  
-  - if @tasks.count != 0
-    - @tasks.each do |task|
-      %h2= link_to task.title, task_path(task)
-
-      %p= simple_format task.description
-      %small= time_ago_in_words task.created_at
+  - if !current_user.present?
+    = render partial: 'welcome_page'
   - else
-    %h2 
-      Hooray.. no task currently. Why don't create a 
-      = link_to 'new one?', new_task_path
+  
+    %h1 
+      = current_user.email
+      task list        
+    - if @tasks.count != 0
+      - @tasks.each do |task|
+        %h2= link_to task.title, task_path(task)
+
+        %p= simple_format task.description
+        %small= time_ago_in_words task.created_at
+    - else
+      %h2 
+        Hooray.. no task currently. Why don't create a 
+        = link_to 'new one?', new_task_path
