@@ -6,6 +6,18 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+    %nav.navbar.navbar-default
+      .container
+        .navbar-header
+          = link_to "Don task", root_path, class: 'navbar-brand'
+        .ul.nav.navbar-nav.navbar-right
+          - if current_user.present?
+            %li= link_to "Sign out", destroy_user_session_path, method: :delete
+          - else
+            %li= link_to "Register", new_user_registration_path
+            %li= link_to "Login", new_user_session_path
+        - if current_user.present?
+          = link_to "Create task", new_task_path, class: "navbar-text navbar-link"
     - flash.each do |name, msg|
-      content_tag(:div, msg, class: ['alert'])
+      =content_tag(:div, msg, class: ['alert'])
     = yield

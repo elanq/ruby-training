@@ -1,7 +1,5 @@
 .col-md-8.col-md-offset-2
   %h1 Your task list  
-  .pull-right
-    = link_to 'New item', new_task_path
   - if @tasks.count != 0
     - @tasks.each do |task|
       %h2= link_to task.title, task_path(task)
