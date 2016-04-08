@@ -20,6 +20,18 @@
         %ul.nav.navbar-nav
           - if user_signed_in?
             %li= link_to "Add play", new_play_path
+          %li.dropdown
+            %a{:href => "#", :class => "dropdown-toggle", "data-toggle" => "dropdown" ,"role" => "button", "aria-expanded" => "false"} 
+              Category
+              %span.caret
+            %ul{class: 'dropdown-menu', "role" => "menu"}
+              - Category.all.each do | cat |
+                - if params[:category] == cat.name
+                  %li.active
+                    = link_to cat.name, plays_path(category: cat.name), class: 'link'
+                - else
+                  %li
+                    = link_to cat.name, plays_path(category: cat.name), class: 'link'
     .container
       -flash.each do |name, msg|
         = content_tag :div, msg, class: 'alert alert-warning'
