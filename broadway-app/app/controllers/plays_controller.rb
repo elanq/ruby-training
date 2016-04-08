@@ -6,11 +6,11 @@ class PlaysController < ApplicationController
   end
 
   def new
-    @play = current_user.play.build 
+    @play = current_user.plays.build 
   end
 
   def create
-    @play = current_user.play.build play_params
+    @play = current_user.plays.build play_params
 
     if @play.save
       redirect_to root_path, notice: "new play successfully saved"
@@ -24,9 +24,12 @@ class PlaysController < ApplicationController
   end
 
   def edit
+    if !user_signed_in?
+      redirect_to root_path, alert: "You can't access this page"
+    end
   end
 
-  def update
+  def update    
     if @play.update play_params
       redirect_to play_path(@play), notice: "play successfully updated"
     else
@@ -36,6 +39,9 @@ class PlaysController < ApplicationController
   end
 
   def destroy
+    if !user_signed_in?
+      redirect_to root_path, alert: "You can't access this page"
+    end
     @play.destroy
     redirect_to root_path, notice: "Play successfully deleted"
   end

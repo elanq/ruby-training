@@ -4,7 +4,9 @@
     directed by
     = @play.director
   %p= simple_format @play.description
-
-  = link_to "Back", root_path
-  = link_to "Edit", edit_play_path(@play)
-  = link_to "Delete", play_path(@play), method: :delete, data: {confirm: "Are you sure?"}
+  .link.btn-group
+    - if user_signed_in?
+      - if @play.user_id == current_user.id
+        = link_to "Back", root_path
+        = link_to "Edit", edit_play_path(@play)
+        = link_to "Delete", play_path(@play), method: :delete, data: {confirm: "Are you sure?"}
