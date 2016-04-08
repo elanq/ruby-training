@@ -2,4 +2,5 @@
   = f.input :title
   = f.input :description
   = f.input :director
-  = f.button :submit
+  = f.button :submit, class: 'btn btn-success'
+  = link_to "Cancel", root_path, class: 'btn btn-danger'
