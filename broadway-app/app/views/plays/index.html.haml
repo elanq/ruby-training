@@ -1,1 +1,6 @@
-%h1 Hello world
+.col-md-8.col-md-offset-2
+  %h1 Playlist
+  - @plays.each do |play|  
+    %h2= link_to play.title, play_path(play)
+
+= link_to "Add play", new_play_path
