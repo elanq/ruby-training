@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  get 'reviews/index'
+
+  get 'reviews/new'
+
+  get 'reviews/edit'
+
   devise_for :users
-  resources :plays
+  resources :plays do
+    resources :reviews
+  end
   root 'plays#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
