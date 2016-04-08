@@ -20,6 +20,7 @@
   .col-md-12
     .reviews
       %h1 Reviews
-      = render @play.reviews
       = link_to "Add review", new_play_review_path(@play), class: 'btn-custom'
+      = render @play.reviews
+
 
