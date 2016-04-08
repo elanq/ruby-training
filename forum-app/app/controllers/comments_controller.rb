@@ -16,6 +16,13 @@ class CommentsController < ApplicationController
   end
 
   def edit
+
+    if !user_signed_in?
+      redirect_to root_path, notice: "You must signed in first"      
+    end
+    if current_user.id != @comment.user_id      
+      redirect_to root_path, notice: "You can't edit other people post"
+    end
   end
 
   def update

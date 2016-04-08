@@ -1,22 +1,22 @@
 .col-md-10.col-md-offset-1
   .message-show
     %h2= @message.title
-  %p.message-posted-by
-    created at
-    = time_ago_in_words @message.created_at
-    ago
-    by
-    = @message.user.email
-  %p.message-desc= simple_format @message.description
+    %p.message-posted-by
+      created at
+      = time_ago_in_words @message.created_at
+      ago
+      by
+      = @message.user.email
+    %p.message-desc= simple_format @message.description
 
-  %h3.comment-section-header Comments:
-  %p= render @message.comments
+    %h3.comment-section-header Comments:
+    %p= render @message.comments
 
-  %h3.reply-to-msg Join discussion
-  %p= render partial: 'comments/form'
+    %h3.reply-to-msg Join discussion
+    %p= render partial: 'comments/form'
 
-  - if user_signed_in?
-    .links.btn-group
-      = link_to "Back", root_path, class: 'btn btn-default'
-      = link_to "Edit", edit_message_path, class: 'btn btn-info'
-      = link_to "Delete", message_path(@message), class: 'btn btn-warning', method: :delete
+    - if user_signed_in?
+      .links.btn-group
+        = link_to "Back", root_path, class: 'btn btn-default'
+        = link_to "Edit", edit_message_path, class: 'btn btn-info'
+        = link_to "Delete", message_path(@message), class: 'btn btn-warning', method: :delete

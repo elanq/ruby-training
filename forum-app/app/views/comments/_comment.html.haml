@@ -7,6 +7,7 @@
     = time_ago_in_words comment.created_at  
     ago  
   .links
-    - if comment.user_id == current_user.id
-      = link_to "edit", edit_message_comment_path(comment.message, comment)
-      = link_to "delete", message_comment_path(comment.message, comment), method: :delete, data: {confirm: "are you sure?"}
+    - if user_signed_in?
+      - if comment.user_id == current_user.id
+        = link_to "edit", edit_message_comment_path(comment.message, comment)
+        = link_to "delete", message_comment_path(comment.message, comment), method: :delete, data: {confirm: "are you sure?"}
