@@ -16,11 +16,28 @@ class PlaysController < ApplicationController
       redirect_to root_path, notice: "new play successfully saved"
     else
       flash[:error] = "Error when trying to create new play"
-      render 'edit'
+      render 'new'
     end
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @play.update play_params
+      redirect_to play_path(@play), notice: "play successfully updated"
+    else
+      flash[:error] = "Error when trying to edit existing play"
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @play.destroy
+    redirect_to root_path, notice: "Play successfully deleted"
   end
 
   private 
