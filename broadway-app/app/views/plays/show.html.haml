@@ -11,8 +11,15 @@
         | 
         = @play.category.name
       %p.play-desc= simple_format @play.description
-.link.btn-group
-- if user_signed_in?
-  - if @play.user_id == current_user.id        
-    = link_to "Edit", edit_play_path(@play)
-    = link_to "Delete", play_path(@play), method: :delete, data: {confirm: "Are you sure?"}
+      .link.btn-group
+        - if user_signed_in?
+          - if @play.user_id == current_user.id        
+            = link_to "Edit", edit_play_path(@play)
+            = link_to "Delete", play_path(@play), method: :delete, data: {confirm: "Are you sure?"}
+.row
+  .col-md-12
+    .reviews
+      %h1 Reviews
+      = render @play.reviews
+      = link_to "Add review", new_play_review_path(@play), class: 'btn-custom'
+
