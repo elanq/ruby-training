@@ -9,6 +9,12 @@
     = @message.user.email
   %p.message-desc= simple_format @message.description
 
+  %h3.comment-section-header Comments:
+  %p= render @message.comments
+
+  %h3.reply-to-msg Join discussion
+  %p= render partial: 'comments/form'
+
   - if user_signed_in?
     .links.btn-group
       = link_to "Back", root_path, class: 'btn btn-default'
