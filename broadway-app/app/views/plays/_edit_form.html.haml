@@ -1,8 +1,9 @@
 = simple_form_for @play, html: {multipart: true} do |f|
+  = f.file_field :play_img
   - if @play.category  
     = select_tag :category_id, options_for_select(@categories, @play.category.id), class: 'form-control'
   - else 
-    = select_tag :category_id, options_for_select(@categories), prompt: "Select category", class: 'form-control'
+    = select_tag :category_id, options_for_select(@categories), prompt: "Select category", class: 'form-control'  
   = f.input :title
   = f.input :description
   = f.input :director

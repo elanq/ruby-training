@@ -1,4 +1,4 @@
-.col-md-8.col-md-offset-2
+.index
   %h1.current-category
     - if params[:category]
       = params[:category]  
@@ -8,4 +8,7 @@
     %h3 There are no plays in this category
   - else   
     - @plays.each do |play|  
-      %h2= link_to "["+play.category.name+"] "+play.title, play_path(play)
+      .col-md-3
+        - ref = "/plays/"+play.id.to_s
+        %a{:href => ref}
+          = image_tag play.play_img.url(:play_index), class: 'play'  
