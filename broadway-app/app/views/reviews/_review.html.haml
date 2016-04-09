@@ -1,5 +1,5 @@
 .review
-  %p= review.rating
+  %div.review-rating{"data-score"=> review.rating}  
   %p.review-comment= simple_format review.comment
   .links.btn-group
     - if user_signed_in?

@@ -9,8 +9,13 @@
         = @play.director
       %small.play-director
         | 
-        = @play.category.name
+        = @play.category.name      
       %p.play-desc= simple_format @play.description
+      %small.avg-rating Average Rating
+      .review-rating{"data-score" => @average_review}
+      %span.number_of_reviews
+        From        
+        = pluralize(@play.reviews.count, "review")
       .link.btn-group
         - if user_signed_in?
           - if @play.user_id == current_user.id        
@@ -23,4 +28,12 @@
       = link_to "Add review", new_play_review_path(@play), class: 'btn-custom'
       = render @play.reviews
 
+:javascript      
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score')
+    },
+    path: '/assets/'
+  })
 

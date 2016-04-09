@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :find_play
   before_action :find_review, only: [:update, :edit, :destroy]
+  before_action :authenticate_user!
 
   def new    
     @review = Review.new

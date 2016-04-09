@@ -1,5 +1,6 @@
 class PlaysController < ApplicationController
-  before_action :find_play, only: [:show, :update, :edit, :destroy]
+  before_action :find_play, only: [:show, :update, :edit, :destroy]  
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index    
     if params[:category]
@@ -28,13 +29,20 @@ class PlaysController < ApplicationController
   end
 
   def show
+    if @play.reviews.blank?
+      @average_review = 0
+    else
+      @average_review = @play.reviews.average(:rating).round(2)
+    end
   end
 
   def edit
     if !user_signed_in?
       redirect_to root_path, alert: "You can't access this page"      
     end
-    @categories = Category.all.map {|c| [c.name, c.id]}
+    @categories = Category.all.map do |c| 
+      [c.name, c.id]
+    end
   end
 
   def update    
